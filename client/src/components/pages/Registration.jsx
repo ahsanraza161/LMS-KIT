@@ -91,7 +91,7 @@ const RegistrationForm = () => {
     event.preventDefault();
     try {
       const response = await axios.post(
-        'http://localhost:8080/register',
+        'https://lms-kit-backend.vercel.app/register',
         formData
       );
 
