@@ -10,60 +10,32 @@
   --primary-text-color: #fff;
 }
 
-.topbarbg {
-  backdrop-filter: blur(5px);
-  background-color: transparent;
-  border-bottom: 3px solid black;
-  border-top: none;
-  border-radius: 25px;
-  color: var(--primary-text-color);
-  margin-bottom: 10px;
-}
-
-.App {
+body {
   background-image: url('../public/assets/bgforlms.jpg');
   background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
+  /* background-position: center center; */
+  /* background-size: cover; */
   padding-top: 5%;
-  height: 100%;
+}
+.home {
+  background-color: #fff;
+  border-radius: 30px;
+}
+.App-main-all {
+  background-color: #fff;
+  border-radius: 30px;
+  padding: 60px 0;
+  margin: 60px 0;
+  color: #000;
 }
 
-.App-main {
-  margin-top: 3%;
-}
-.bg {
-  border: 1px solid var(--secondary-color);
-  border-radius: 25px;
-  filter: blur(5px);
-  transition: all ease 0.5s;
-  padding: 20px;
-}
-.login {
-  margin: 10% 0%;
-  /* margin-bottom: 10px; */
-}
-.about,
-.contact {
-  width: 100%;
-  height: 600px;
-  color: var(--primary-text-color);
-}
-.bg:hover {
-  filter: none;
-  border: 1px solid var(--secondary-color);
-  background-color: var(--primary-text-color);
-  border-radius: 50px;
-}
 .emaillog {
   border-color: var(--primary-text-color);
 }
 .mainpagecontent {
-  color: white;
+  color: black;
   align-items: center;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 15%;
+  margin-top: 19%;
 }
 .mainpagecontent a {
   text-decoration: none;
@@ -71,11 +43,27 @@
 .mainpagecontent p {
   margin: 20px 0;
 }
+.mainpagebtn {
+  color: #000;
+  border: 1px solid;
+  padding: 5px 10px;
+}
+.navSmart {
+  background-color: #000;
+  padding: 5px 20px !important;
+  margin: 10px auto !important;
+  border-radius: 30px;
+}
+.navmain {
+  display: flex !important;
+  margin-left: 70% !important;
+  gap: 30px !important;
+}
 .navitem {
   text-decoration: none;
+  font-size: small;
   font-weight: bold;
   color: var(--primary-text-color);
-  margin-left: 5%;
   transition: all ease 0.5s;
 }
 .navitem:hover {
@@ -96,7 +84,7 @@
   color: #000;
 }
 
-.registrationform {
+/* .registrationform {
   background-color: var(--primary-text-color);
   border-radius: 25px;
   transition: all ease 0.5s;
@@ -104,35 +92,39 @@
 }
 .registrationform:hover {
   border-radius: 50px;
-}
-.SignupSide {
-  color: var(--primary-text-color);
-  padding: 30px;
+} */
+.about {
+  overflow: hidden;
+  height: 75%;
+  background-color: #fff;
+  border-radius: 30px;
+  padding: 60px 0;
+  margin: 40px 0;
   text-align: center;
+  color: #000;
 }
-.SignupSide h1 {
+.aboutHeadings {
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+.aboutMainline {
   font-size: large;
-  margin-bottom: 20px;
 }
-.SignupSide p {
-  color: var(--secondary-text-color);
-}
-
 .aboutmainbox {
   display: flex;
   justify-content: space-between;
   flex-direction: row;
   margin-top: 50px;
+  width: 80%;
+  margin: auto;
 }
 
 .boxabout {
   flex-basis: 100%;
-  /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
   padding: 20px;
   transition: all ease-in-out 0.5s;
 }
 .boxabout:hover {
-  /* margin-top: 50px; */
   margin: 40px 20px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
@@ -140,6 +132,12 @@
 @media only screen and (max-width: 600px) {
   .App {
     height: 100%;
+  }
+  .navSmart {
+    padding: 5px 20px !important;
+    margin: 10px auto !important;
+    width: 90% !important;
+    border-radius: 30px;
   }
 }
 @media only screen and (max-width: 800px) {
@@ -149,5 +147,12 @@
   }
   .aboutmainbox {
     flex-direction: column;
+  }
+}
+@media only screen and (max-width: 1200px) {
+  .navmain {
+    display: flex !important;
+    margin-left: 63% !important;
+    gap: 30px !important;
   }
 }

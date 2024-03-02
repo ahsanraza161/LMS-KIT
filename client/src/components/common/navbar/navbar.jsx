@@ -6,20 +6,27 @@ import { Link } from 'react-router-dom';
 function Topbar() {
   return (
     <>
-      <Navbar className="topbarbg" data-bs-theme="dark" expand="lg" fixed="top">
+      <Navbar
+        className="navSmart container"
+        // className="topbarbg  "
+        data-bs-theme="dark"
+        // bg="dark"
+        expand="lg"
+        fixed="top"
+      >
         <Container>
           <Navbar.Brand href="/">LMS-KIT</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ms-auto align-items-center">
+            <Nav className=" navmain align-items-center">
               <Link className="active navitem" to="/">
                 Home
               </Link>
-              <Link className="navitem" to="/contact">
-                Contact
-              </Link>
               <Link className="navitem" to="/about">
                 About
+              </Link>
+              <Link className="navitem" to="/login">
+                Login
               </Link>
               <Link className="regnavitem navitem" to="/registration">
                 Register

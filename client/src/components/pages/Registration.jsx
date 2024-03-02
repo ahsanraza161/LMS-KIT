@@ -145,8 +145,7 @@ const RegistrationForm = () => {
       <header className="App-header">
         <Topbar />
       </header>
-      <main className="App-main container">
-        <div className="registrationform">
+      <main className="App-main-all container">
           <ThemeProvider theme={defaultTheme}>
             <Container component="main" maxWidth="xs">
               <CssBaseline />
@@ -375,7 +374,6 @@ const RegistrationForm = () => {
               </Box>
             </Container>
           </ThemeProvider>
-        </div>
       </main>
     </>
   );

@@ -1,22 +1,22 @@
 import React from 'react';
-import Topbar from '../common/navbar/navbar';
+// import Topbar from '../common/navbar/navbar';
 import Login from '../pages/login';
 import { Container, Row, Col } from 'react-bootstrap';
+import Link from '@mui/material/Link';
 
 function home() {
   return (
     <div>
-      <header className="App-header">
-        <Topbar />
-      </header>
-      <main className="App-main container">
+      <main className=" home container">
         <Container fluid>
           <Row>
-            <Col className='login' xs={12} md={6}>
-              <Login />
+            <Col className="login" xs={12} md={6}>
+              <Link href="/login">
+                <Login className="text-decoration-none" />
+              </Link>
             </Col>
-            <Col className='login' xs={12} md={6}>
-              <div className="mainpagecontent">
+            <Col xs={12} md={6}>
+              <div className="App-main-all mainpagecontent">
                 <h1>Welcome To The</h1>
                 <h1>Learning Managment System (KIT)</h1>
                 <p>
@@ -26,7 +26,7 @@ function home() {
                 </p>
                 <a
                   href="https://karachi-it-educators.org/"
-                  className="regnavitem"
+                  className="mainpagebtn"
                 >
                   Learn More
                 </a>

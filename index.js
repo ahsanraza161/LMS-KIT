@@ -13,55 +13,6 @@ app.use(cors());
 connectdb();
 
 //Routes
-// app.post('/login', async (req, res) => {
-// const { email, password } = req.body;
-// let user = await User.findOne({ email });
-
-// });
-
-// app.post('/register', (req, res) => {
-//   const {
-//     name,
-//     fatherName,
-//     dateOfBirth,
-//     gender,
-//     cnic,
-//     address,
-//     qualification,
-//     subject,
-//     completionYear,
-//     universityCollege,
-//     email,
-//     password,
-//   } = req.body;
-//   User.findOne({ email: email }, (err, User) => {
-//     if (User) {
-//       res.send({ message: 'User already registerd' });
-//     } else {
-//       const User = new User({
-//         name,
-//         fatherName,
-//         dateOfBirth,
-//         gender,
-//         cnic,
-//         address,
-//         qualification,
-//         subject,
-//         completionYear,
-//         universityCollege,
-//         email,
-//         password,
-//       });
-//       user.save((err) => {
-//         if (err) {
-//           res.send(err);
-//         } else {
-//           res.send({ message: 'Successfully Registered, Please login now.' });
-//         }
-//       });
-//     }
-//   });
-// });
 
 app.post('/register', async (req, res) => {
   try {
