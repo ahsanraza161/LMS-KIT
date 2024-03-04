@@ -1,4 +1,5 @@
 import { React, useState } from 'react';
+import swal from 'sweetalert2';
 import '../../global.css';
 import Topbar from '../common/navbar/navbar';
 import Avatar from '@mui/material/Avatar';
@@ -32,16 +33,43 @@ const SignIn = () => {
     event.preventDefault();
 
     try {
-      const response = await axios.post('https://localhost:8080/', formData);
-
-      // Handle successful login (e.g., redirect, display success message)
-      console.log('Login successful:', response.data);
+      const response = await axios.post(
+        'http://localhost:8080/api/auth/',
+        formData
+      );
+      if (response.data.success) {
+        // Assuming the response has a "success" property
+        swal.fire({
+          title: 'Login Successful!',
+          text: 'You have successfully Login to Your account.',
+          icon: 'success',
+          confirmButtonText: 'Ok',
+        });
+      } else {
+        swal.fire({
+          title: 'Login Failed Server Issue!',
+          text:
+            response.data.message || 'An error occurred during login.', // Provide a more specific error message if available
+          icon: 'error',
+          confirmButtonText: 'Ok',
+        });
+      }
     } catch (error) {
       console.error('Login error:', error);
-      // Handle login errors (e.g., display error message)
+      swal.fire({
+        title: 'Login Error',
+        text: 'An unexpected error occurred. Please try again later.', // Informative error message
+        icon: 'error',
+        confirmButtonText: 'Ok',
+      });
+    } 
+    // finally {
+    //   // Reset the form regardless of success or failure for a clean experience
+    //   setFormData({
+    //     email: '',
+    //     password: '',
+    //   });  };
     }
-  };
-
   return (
     <>
       <Topbar />
