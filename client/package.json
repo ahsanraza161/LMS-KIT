@@ -55,6 +55,7 @@
     "react-bootstrap": "^2.10.1",
     "react-dev-utils": "^12.0.1",
     "react-dom": "^18.2.0",
+    "react-icons": "^5.0.1",
     "react-refresh": "^0.11.0",
     "react-router-dom": "^6.22.1",
     "react-scripts": "^5.0.1",
@@ -82,7 +83,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "npm install && npm run build:react",
     "test": "react-scripts test --env=jsdom"
   },
   "browserslist": {
