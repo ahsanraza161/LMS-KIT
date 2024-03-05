@@ -83,7 +83,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "npm install && npm run build:react",
+    "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom"
   },
   "browserslist": {
