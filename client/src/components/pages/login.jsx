@@ -1,5 +1,4 @@
 import { React, useState } from 'react';
-import swal from 'sweetalert2';
 import '../../global.css';
 import Topbar from '../common/navbar/navbar';
 import Avatar from '@mui/material/Avatar';
@@ -22,54 +21,33 @@ const SignIn = () => {
     password: '',
   });
 
-  const handleChange = (event) => {
-    setFormData({
-      ...formData,
-      [event.target.name]: event.target.value,
+  const handleChange = (e) => {
+    setFormData((prevdata) => {
+      return { ...prevdata, [e.target.name]: e.target.value };
     });
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    const config = {
+      data: {
+        'Content-Type': 'application/json',
+      },
+    };
+    setFormData((prevdata) => {
+      return { email: '', password: '' };
+    });
     try {
-      const response = await axios.post(
-        'http://localhost:8080/api/auth/',
-        formData
+      const res = await axios.post(
+        'http://localhost:8080/api/auth',
+        formData,
+        config
       );
-      if (response.data.success) {
-        // Assuming the response has a "success" property
-        swal.fire({
-          title: 'Login Successful!',
-          text: 'You have successfully Login to Your account.',
-          icon: 'success',
-          confirmButtonText: 'Ok',
-        });
-      } else {
-        swal.fire({
-          title: 'Login Failed Server Issue!',
-          text:
-            response.data.message || 'An error occurred during login.', // Provide a more specific error message if available
-          icon: 'error',
-          confirmButtonText: 'Ok',
-        });
-      }
-    } catch (error) {
-      console.error('Login error:', error);
-      swal.fire({
-        title: 'Login Error',
-        text: 'An unexpected error occurred. Please try again later.', // Informative error message
-        icon: 'error',
-        confirmButtonText: 'Ok',
-      });
-    } 
-    // finally {
-    //   // Reset the form regardless of success or failure for a clean experience
-    //   setFormData({
-    //     email: '',
-    //     password: '',
-    //   });  };
+      console.log(res.data, 'login success');
+    } catch (err) {
+      console.log(err);
     }
+  };
   return (
     <>
       <Topbar />
