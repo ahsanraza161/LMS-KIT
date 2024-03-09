@@ -1,11 +1,15 @@
-import React from 'react'
-
-function Teachers() {
+import "./students.css"
+import Datatable from "../../components/datatable/Datatable"
+const List = () => {
   return (
-    <div>
-      hello Teachers
+    <div className="list container">
+      <div className="listContainer">
+        <Datatable/>
+        
+      </div>
+
     </div>
   )
 }
 
-export default Teachers
+export default List;

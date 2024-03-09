@@ -1,11 +1,19 @@
-import React from 'react'
+import Widget from '../../components/widget/Widget';
+import './dashboard.css';
 
-function Dashboard() {
+const Dashboard = () => {
   return (
-    <>
-      wellcome to  dashboard page!
-    </>
-  )
-}
+    <div className="home">
+      <div className="homeContainer">
+        <div className="widgets">
+          <Widget type="user" />
+          <Widget type="order" />
+          <Widget type="earning" />
+          <Widget type="balance" />
+        </div>
+      </div>
+    </div>
+  );
+};
 
-export default Dashboard
+export default Dashboard;

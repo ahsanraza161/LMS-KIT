@@ -36,26 +36,28 @@ const Sidebar = ({ children }) => {
   ];
   return (
     <div className="container2">
-      <div style={{ width: isOpen ? '380px' : '90px' }} className="sidebar">
+      <div className={isOpen ? 'sidebar2' : 'sidebar'}>
         <div className="top_section">
-          <h1 style={{ display: isOpen ? 'block' : 'none' }} className="logo">
+          <h1
+            style={{ display: isOpen ? 'block' : 'none' }}
+            className="logo displayB"
+          >
             KIT
           </h1>
-          <div style={{ marginLeft: isOpen ? '60%' : '0px' }} className="bars">
+          <div
+            style={{ marginLeft: isOpen ? '40%' : '0px' }}
+            className={isOpen ? 'displayH bars' : 'displayH bars'}
+          >
             <FaBars onClick={toggle} />
           </div>
         </div>
         {menuItem.map((item, index) => (
-          <NavLink
-            to={item.path}
-            key={index}
-            className="link"
-            activeclassName="active"
-          >
+          <NavLink to={item.path} key={index} className="link">
             <div className="icon">{item.icon}</div>
             <div
               style={{ display: isOpen ? 'block' : 'none' }}
-              className="link_text"
+              // className="link_text"
+              className={isOpen ? 'displayH' : 'displayH'}
             >
               {item.name}
             </div>
