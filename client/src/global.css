@@ -17,14 +17,14 @@ body {
 .home {
   background-color: #fff;
   border-radius: 30px;
-  margin: 10% auto;
+  margin: 7% auto;
 }
 .App-main-all {
   background-color: #fff;
   width: 80%;
   border-radius: 30px;
   padding: 60px 0;
-  margin: 10% auto;
+  margin: 7% auto;
   color: #000;
 }
 
@@ -99,7 +99,7 @@ body {
   background-color: #fff;
   border-radius: 30px;
   padding: 60px 0;
-  margin: 10% auto;
+  margin: 7% auto;
   text-align: center;
   color: #000;
 }
