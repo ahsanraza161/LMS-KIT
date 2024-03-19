@@ -4,25 +4,31 @@ require('dotenv').config();
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 
-const User = require('../models/users');
+const Student = require('../models/Student');
 
+// @route POST api/users
+// @describe Login User
+// @access public
 router.post('/', async (req, res) => {
   const { email, password } = req.body;
   try {
-    let user = await User.findOne({ email });
-    if (!user) {
-      res.status(400).json({ msg: 'User does not exist' });
+    let student = await Student.findOne({ email });
+    if (!student) {
+      return res.status(400).json({ msg: 'User does not exist' });
+    } else if (student.status === 'pending') {
+      return res
+        .status(400)
+        .json({ msg: 'Your account request has been sent to admin,You can not login now' });
     }
-
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = await bcrypt.compare(password, student.password);
 
     if (!isMatch) {
       return res.status(400).json({ msg: 'Password Incorrect' });
     }
 
     const payload = {
-      user: {
-        id: user.id,
+      student: {
+        id: student.id,
       },
     };
 
@@ -33,13 +39,16 @@ router.post('/', async (req, res) => {
         expiresIn: 3600000,
       },
       (err, token) => {
-        if (err) throw err.message;
-        return res.json({ token });
+        if (err) {
+          console.error(err.message);
+          return res.status(500).json({ msg: 'Server error' });
+        }
+        return res.status(200).json({ token });
       }
     );
   } catch (err) {
     console.error(err.message);
-    res.status({ msg: 'Server error' });
+    res.status(500).json({ msg: 'Server error' });
   }
 });
 

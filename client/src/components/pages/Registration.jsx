@@ -1,13 +1,10 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import swal from 'sweetalert2';
+import React, { useContext, useEffect, useState } from 'react';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import Topbar from '../common/navbar/navbar';
-import axios from 'axios';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -18,6 +15,8 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import AuthContext from '../../context/auth/authcontext';
+import toast, { Toaster } from 'react-hot-toast';
 
 import {
   Select,
@@ -31,6 +30,7 @@ import {
 
 const defaultTheme = createTheme();
 const degrees = ['Masters', 'Bachelor', 'Intermediate', 'Matric', 'Other'];
+const usertype = ['Student', 'Faculty'];
 
 const subjects = [
   'Computer Science',
@@ -54,7 +54,8 @@ const genders = [
 ];
 
 const RegistrationForm = () => {
-  const [showPassword, setShowPassword] = React.useState(false);
+  const { RegisterHandler, message } = useContext(AuthContext);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -63,6 +64,7 @@ const RegistrationForm = () => {
   };
 
   const [formData, setFormData] = useState({
+    usertype: '',
     name: '',
     fatherName: '',
     dateOfBirth: '',
@@ -84,59 +86,31 @@ const RegistrationForm = () => {
     });
   };
 
-  const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try {
-      const response = await axios.post(
-        'http://localhost:8080/api/users',
-        formData
-      );
-
-      if (response.data.success) {
-        // Assuming the response has a "success" property
-        swal.fire({
-          title: 'Registration Successful!  You can login Now',
-          text: 'You have successfully created an account.',
-          icon: 'success',
-          confirmButtonText: 'Ok',
-        });
-      } else {
-        swal.fire({
-          title: 'Registration Successful! You can login Now',
-          text:
-            response.data.message || 'An error occurred during registration.', // Provide a more specific error message if available
-          icon: 'success',
-          confirmButtonText: 'Ok',
-        });
-      }
-    } catch (error) {
-      console.error('Registration error:', error);
-      swal.fire({
-        title: 'Registration Error',
-        text: 'An unexpected error occurred. Please try again later.', // Informative error message
-        icon: 'error',
-        confirmButtonText: 'Ok',
-      });
-    } finally {
-      // Reset the form regardless of success or failure for a clean experience
-      setFormData({
-        name: '',
-        fatherName: '',
-        dateOfBirth: '',
-        gender: '',
-        cnic: '',
-        address: '',
-        qualification: '',
-        subject: '',
-        completionYear: '',
-        universityCollege: '',
-        email: '',
-        password: '',
-      });
-    }
-    navigate('/');
+    RegisterHandler(formData);
+    setFormData({
+      usertype: '',
+      name: '',
+      fatherName: '',
+      dateOfBirth: '',
+      gender: '',
+      cnic: '',
+      address: '',
+      qualification: '',
+      subject: '',
+      completionYear: '',
+      universityCollege: '',
+      email: '',
+      password: '',
+    });
   };
+
+  useEffect(() => {
+    if (message !== null && message !== undefined) {
+      toast.success(message);
+    }
+  }, [message]);
 
   return (
     <>
@@ -167,6 +141,23 @@ const RegistrationForm = () => {
               sx={{ mt: 3 }}
             >
               <Grid container spacing={2}>
+                <Grid item xs={12} sm={12}>
+                  <FormControl required style={{ width: '100%' }}>
+                    <InputLabel id="usertype-label">Register as a</InputLabel>
+                    <Select
+                      labelId="usertype-label"
+                      name="usertype"
+                      value={formData.usertype}
+                      onChange={handleChange}
+                    >
+                      {usertype.map((usertype) => (
+                        <MenuItem key={usertype} value={usertype}>
+                          {usertype}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                </Grid>
                 <Grid item xs={12} sm={12}>
                   <TextField
                     style={{ width: '100%' }}
@@ -363,6 +354,7 @@ const RegistrationForm = () => {
           </Box>
         </ThemeProvider>
       </main>
+      <Toaster />
     </>
   );
 };

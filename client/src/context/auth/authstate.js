@@ -2,7 +2,7 @@ import React, { useReducer } from 'react';
 import AuthContext from './authcontext';
 import Authreducer from './authreducer';
 import axios from 'axios';
-import { LOGIN_SUCCESS } from '../type';
+import { LOGIN_FAIL, REGISTER_SUCCESS } from '../type';
 
 const Authstate = ({ children }) => {
   const initstate = {
@@ -11,6 +11,7 @@ const Authstate = ({ children }) => {
     error: null,
     data: '',
     token: localStorage.getItem('token'),
+    message: null,
   };
 
   const LoginHandler = async (formData) => {
@@ -25,14 +26,28 @@ const Authstate = ({ children }) => {
         formData,
         config
       );
-      dispatch({
-        type: LOGIN_SUCCESS,
-        payload: res.data.token,
-      });
     } catch (err) {
-      console.log(err);
+      dispatch({
+        type: LOGIN_FAIL,
+        payload: err.response.data.msg,
+      });
     }
   };
+  const RegisterHandler = async (formData) => {
+    try {
+      const response = await axios.post(
+        'http://localhost:8080/api/users',
+        formData
+      );
+      dispatch({
+        type: REGISTER_SUCCESS,
+        payload: response.data.msg,
+      });
+    } catch (err) {
+      console.log(err.response);
+    }
+  };
+
   const [state, dispatch] = useReducer(Authreducer, initstate);
   return (
     <AuthContext.Provider
@@ -42,7 +57,9 @@ const Authstate = ({ children }) => {
         isLoading: state.isLoading,
         error: state.error,
         data: state.data,
+        message: state.message,
         LoginHandler,
+        RegisterHandler,
       }}
     >
       {children}

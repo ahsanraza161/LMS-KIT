@@ -3,10 +3,11 @@ import '../../mainadmin.css';
 import {
   FaTh,
   FaBars,
-  FaUserAlt,
-  FaRegChartBar,
-  FaCommentAlt,
+  FaChalkboardTeacher,
+  FaRegAddressCard,
+  FaUsersCog,
 } from 'react-icons/fa';
+import { PiStudent } from 'react-icons/pi';
 import { Link } from 'react-router-dom';
 
 const Sidebar = ({ children }) => {
@@ -19,19 +20,24 @@ const Sidebar = ({ children }) => {
       icon: <FaTh />,
     },
     {
-      path: 'student',
+      path: 'students',
       name: 'Students',
-      icon: <FaUserAlt />,
+      icon: <PiStudent />,
     },
     {
-      path: 'teacher',
+      path: 'teachers',
       name: 'Teachers',
-      icon: <FaRegChartBar />,
+      icon: <FaChalkboardTeacher  />,
     },
     {
       path: 'adduser',
       name: 'Register',
-      icon: <FaCommentAlt />,
+      icon: <FaRegAddressCard />,
+    },
+    {
+      path: 'usermanagement',
+      name: 'User Manangment',
+      icon: <FaUsersCog />,
     },
   ];
   return (
