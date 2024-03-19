@@ -17,7 +17,7 @@ const Adminstate = ({ children }) => {
         },
       };
       const response = await axios.get(
-        'http://localhost:8080/api/admin',
+        'https://lms-kit-backend.vercel.app/api/admin',
         config
       );
       dispatch({
@@ -38,7 +38,7 @@ const Adminstate = ({ children }) => {
         },
       };
       const res = await axios.put(
-        `http://localhost:8080/api/admin/${id}`,
+        `https://lms-kit-backend.vercel.app/api/admin/${id}`,
         config
       );
       console.log(res.data);
@@ -50,7 +50,7 @@ const Adminstate = ({ children }) => {
   // Add the getUserData function
   const getUserData = async (id) => {
     try {
-      const response = await axios.get(`http://localhost:8080/api/user/${id}`);
+      const response = await axios.get(`https://lms-kit-backend.vercel.app/api/user/${id}`);
 
       if (response.status === 200) {
         return response.data;

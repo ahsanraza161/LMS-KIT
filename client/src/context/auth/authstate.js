@@ -22,7 +22,7 @@ const Authstate = ({ children }) => {
         },
       };
       const res = await axios.post(
-        'http://localhost:8080/api/auth',
+        'https://lms-kit-backend.vercel.app/api/auth',
         formData,
         config
       );
@@ -36,7 +36,7 @@ const Authstate = ({ children }) => {
   const RegisterHandler = async (formData) => {
     try {
       const response = await axios.post(
-        'http://localhost:8080/api/users',
+        'https://lms-kit-backend.vercel.app/api/users',
         formData
       );
       dispatch({
