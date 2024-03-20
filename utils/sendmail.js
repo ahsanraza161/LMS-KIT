@@ -17,7 +17,7 @@ async function sendMail(subject, text, to) {
   var mailOptions = {
     from: process.env.sender,
     //! Change
-    to: to || 'mhuzaif523@gmail.com',
+    to: to || 'neweraprovider@gmail.com',
     subject: subject,
     html: text,
   };
